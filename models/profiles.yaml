@@ -1,0 +1,19 @@
+# This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
+models:
+  - name: init_ml_project
+    model_type: python_model
+    model_spec:
+      occurred_at_col: insert_ts
+      entity_key: user
+      validity_time: 24h # 1 day
+      # py_repo_url: git@github.com:rudderlabs/ml_repo.git
+      py_repo_url: git@github.com:rudderlabs/rudderstack-profiles-classifier.git
+      predict:
+        inputs:
+          - packages/shopify_features/models/shopify_user_features
+      train:
+        file_extension: .json
+        file_validity: 60m
+        inputs:
+          - inputs/feature_table
+          - packages/shopify_features/models/shopify_user_features

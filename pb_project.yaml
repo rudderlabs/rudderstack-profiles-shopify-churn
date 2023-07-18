@@ -1,0 +1,50 @@
+# Project name
+name: sample_attribution
+
+# Project's yaml schema version
+schema_version: 37
+
+# WH Connection to use.
+connection: shopify_wh
+
+# Whether to allow inputs having no timestamps,
+# if true, data without timestamps are included when running models
+include_untimed: true
+
+# Model folders to use.
+model_folders:
+  - models
+
+# # Entities in this project and their ids.
+# entities:
+#   - name: user
+#     id_stitcher: models/user_id_stitcher
+#     id_types:
+#       - main_id
+#       - user_id
+#       - anonymous_id
+#       - email
+
+id_types:
+  - name: main_id
+  - name: user_id
+  - name: anonymous_id
+    filters:
+      - type: exclude
+        value: ""
+      - type: exclude
+        value: "unknown"
+      - type: exclude
+        value: "NaN"
+  - name: email
+    filters:
+      - type: include
+        regex: ".+@.+"
+      - type: exclude
+        value: "test@company.com"
+
+packages:
+  - name: shopify_features
+    url: git@github.com:rudderlabs/rudderstack-profiles-shopify-features.git
+    inputsMap:
+      rsOrderUpdated: inputs/rsOrderUpdated # we have
