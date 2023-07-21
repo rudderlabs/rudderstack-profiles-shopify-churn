@@ -45,6 +45,6 @@ id_types:
 
 packages:
   - name: shopify_features
-    url: git@github.com:rudderlabs/rudderstack-profiles-shopify-features.git
+    url: https://github.com/rudderlabs/rudderstack-profiles-shopify-features.git
     inputsMap:
       rsOrderUpdated: inputs/rsOrderUpdated # we have
