@@ -2,7 +2,7 @@
 name: sample_attribution
 
 # Project's yaml schema version
-schema_version: 37
+schema_version: 38
 
 # WH Connection to use.
 connection: shopify_wh
