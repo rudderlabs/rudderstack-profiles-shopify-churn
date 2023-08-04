@@ -1,6 +1,6 @@
 # This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
 models:
-  - name: init_ml_project
+  - name: shopify_churn
     model_type: python_model
     model_spec:
       occurred_at_col: insert_ts
@@ -10,10 +10,20 @@ models:
       py_repo_url: git@github.com:rudderlabs/rudderstack-profiles-classifier.git
       predict:
         inputs:
-          - packages/shopify_features/models/shopify_user_features
+          - packages/feature_table/models/shopify_user_features
       train:
         file_extension: .json
         file_validity: 60m
         inputs:
           - inputs/feature_table
-          - packages/shopify_features/models/shopify_user_features
+          - packages/feature_table/models/shopify_user_features
+        config:
+          outputs:
+            column_names:
+              percentile: &percentile_name percentile_churn_score_7_days
+              score: churn_score_7_days
+            feature_meta_data: &feature_meta_data
+              features:
+                - name: *percentile_name
+                  description: 'Percentile of churn score. Higher the percentile, higher the probability of churn'
+      <<: *feature_meta_data
