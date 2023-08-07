@@ -1,6 +1,6 @@
 # This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
 models:
-  - name: init_ml_project
+  - name: shopify_churn
     model_type: python_model
     model_spec:
       occurred_at_col: insert_ts
@@ -31,3 +31,4 @@ models:
         config:
           constants:
             material_registry: *material_registry_table
+      <<: *feature_meta_data

@@ -3,7 +3,7 @@ inputs:
     table: RUDDERSTACK_TEST_DB.DATA_APPS_SIMULATED_SHOPIFY.IDENTIFIES
     occurred_at_col: timestamp
   - name: rsOrderUpdated
-    table: RUDDERSTACK_TEST_DB.DATA_APPS_SIMULATED_SHOPIFY.ORDER_CREATED
+    table: RUDDERSTACK_TEST_DB.DATA_APPS_SIMULATED_SHOPIFY.ORDER_UPDATED
     occurred_at_col: timestamp
     ids:
       - select: "user_id"
