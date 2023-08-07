@@ -10,7 +10,7 @@ models:
       py_repo_url: git@github.com:rudderlabs/rudderstack-profiles-classifier.git
       predict:
         inputs:
-          - packages/shopify_features/models/shopify_user_features
+          - packages/feature_table/models/shopify_user_features
         config:
           constants:
             material_registry: &material_registry_table material_registry_3
@@ -27,7 +27,7 @@ models:
         file_validity: 60m
         inputs:
           - inputs/feature_table
-          - packages/shopify_features/models/shopify_user_features
+          - packages/feature_table/models/shopify_user_features
         config:
           constants:
             material_registry: *material_registry_table
