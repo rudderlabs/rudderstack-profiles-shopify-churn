@@ -10,14 +10,10 @@ models:
       py_repo_url: git@github.com:rudderlabs/rudderstack-profiles-classifier.git
       predict:
         inputs:
-          - packages/feature_table/models/shopify_user_features
-      train:
-        file_extension: .json
-        file_validity: 60m
-        inputs:
-          - inputs/feature_table
-          - packages/feature_table/models/shopify_user_features
+          - packages/shopify_features/models/shopify_user_features
         config:
+          constants:
+            material_registry: &material_registry_table material_registry_3
           outputs:
             column_names:
               percentile: &percentile_name percentile_churn_score_7_days
@@ -26,4 +22,13 @@ models:
               features:
                 - name: *percentile_name
                   description: 'Percentile of churn score. Higher the percentile, higher the probability of churn'
+      train:
+        file_extension: .json
+        file_validity: 60m
+        inputs:
+          - inputs/feature_table
+          - packages/shopify_features/models/shopify_user_features
+        config:
+          constants:
+            material_registry: *material_registry_table
       <<: *feature_meta_data
