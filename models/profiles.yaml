@@ -13,7 +13,7 @@ models:
           - packages/feature_table/models/shopify_user_features
         config:
           constants:
-            material_registry: &material_registry_table material_registry_3
+            material_registry: &material_registry_table material_registry_4
           outputs:
             column_names:
               percentile: &percentile_name percentile_churn_score_7_days
