@@ -2,16 +2,117 @@ inputs:
   - name: feature_table
     table: RUDDERSTACK_TEST_DB.DATA_APPS_SIMULATED_SHOPIFY.IDENTIFIES
     occurred_at_col: timestamp
-  - name: rsOrderUpdated
-    table: RUDDERSTACK_TEST_DB.DATA_APPS_SIMULATED_SHOPIFY.ORDER_UPDATED
+    
+  - name: rsCartUpdate
+    table: RUDDERSTACK_TEST_DB.DATA_APPS_SIMULATED_SHOPIFY.CART_UPDATE
     occurred_at_col: timestamp
-    ids:
-      - select: "user_id"
-        type: user_id
-        entity: user
+    ids: 
       - select: "anonymous_id"
         type: anonymous_id
         entity: user
     source_metadata:
       role: shopify
       category: webhook
+        
+  - name: rsIdentifies
+    table: RUDDERSTACK_TEST_DB.DATA_APPS_SIMULATED_SHOPIFY.identifies
+    occurred_at_col: timestamp
+    ids: 
+      - select: "user_id"
+        type: user_id
+        entity: user
+        
+      - select: "anonymous_id"
+        type: anonymous_id
+        entity: user
+        
+      - select: "lower(email)"
+        type: email
+        entity: user
+    source_metadata:
+      role: shopify
+      category: webhook
+        
+  - name: rsOrderCancelled
+    table: RUDDERSTACK_TEST_DB.DATA_APPS_SIMULATED_SHOPIFY.order_cancelled
+    occurred_at_col: timestamp
+    ids: 
+      - select: "user_id"
+        type: user_id
+        entity: user
+        
+      - select: "anonymous_id"
+        type: anonymous_id
+        entity: user
+    source_metadata:
+      role: shopify
+      category: webhook
+        
+  - name: rsOrderCreated
+    table: RUDDERSTACK_TEST_DB.DATA_APPS_SIMULATED_SHOPIFY.ORDER_CREATED
+    occurred_at_col: timestamp
+    ids: 
+      - select: "user_id"
+        type: user_id
+        entity: user
+        
+      - select: "anonymous_id"
+        type: anonymous_id
+        entity: user
+    source_metadata:
+      role: shopify
+      category: webhook
+        
+  - name: rsOrderUpdated
+    table: RUDDERSTACK_TEST_DB.DATA_APPS_SIMULATED_SHOPIFY.ORDER_UPDATED
+    occurred_at_col: timestamp
+    ids: 
+      - select: "user_id"
+        type: user_id
+        entity: user
+        
+      - select: "anonymous_id"
+        type: anonymous_id
+        entity: user
+    source_metadata:
+      role: shopify
+      category: webhook
+        
+  - name: rsPages
+    table: RUDDERSTACK_TEST_DB.DATA_APPS_SIMULATED_SHOPIFY.pages
+    occurred_at_col: timestamp
+    ids: 
+      - select: "user_id"
+        type: user_id
+        entity: user
+        
+      - select: "anonymous_id"
+        type: anonymous_id
+        entity: user
+        
+      - select: "concat(coalesce(anonymous_id, 'null'), coalesce(to_char(context_session_id), 'null'))"
+        type: session_id
+        entity: user
+        
+      - select: "concat(coalesce(anonymous_id, 'null'), coalesce(to_char(context_session_id), 'null'))"
+        type: session_id
+        entity: session
+    source_metadata:
+      role: shopify
+      category: webhook
+        
+  - name: rsTracks
+    table: RUDDERSTACK_TEST_DB.DATA_APPS_SIMULATED_SHOPIFY.tracks
+    occurred_at_col: timestamp
+    ids: 
+      - select: "user_id"
+        type: user_id
+        entity: user
+        
+      - select: "anonymous_id"
+        type: anonymous_id
+        entity: user
+    source_metadata:
+      role: shopify
+      category: webhook
+        

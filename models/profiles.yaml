@@ -7,13 +7,13 @@ models:
       entity_key: user
       validity_time: 24h # 1 day
       # py_repo_url: git@github.com:rudderlabs/ml_repo.git
-      py_repo_url: git@github.com:rudderlabs/rudderstack-profiles-classifier.git
+      py_repo_url: https://github.com/rudderlabs/rudderstack-profiles-classifier.git
       predict:
         inputs:
           - packages/feature_table/models/shopify_user_features
         config:
           constants:
-            material_registry: &material_registry_table material_registry_3
+            material_registry: &material_registry_table material_registry_4
           outputs:
             column_names:
               percentile: &percentile_name percentile_churn_score_7_days
