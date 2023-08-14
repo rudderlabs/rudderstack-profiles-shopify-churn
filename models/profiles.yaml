@@ -6,7 +6,6 @@ models:
       occurred_at_col: insert_ts
       entity_key: user
       validity_time: 24h # 1 day
-      # py_repo_url: git@github.com:rudderlabs/ml_repo.git
       py_repo_url: https://github.com/rudderlabs/rudderstack-profiles-classifier.git
       predict:
         inputs:
