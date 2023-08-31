@@ -26,4 +26,10 @@ models:
           - inputs/feature_table
           - packages/feature_table/models/shopify_user_features
         config:
+          data:
+            label_column: is_churned_7_days
+            label_value: 1
+            prediction_horizon_days: 7
+            model_name: 'shopify_user_features'
+            
       <<: *feature_meta_data
