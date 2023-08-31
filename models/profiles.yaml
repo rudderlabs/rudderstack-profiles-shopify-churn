@@ -23,7 +23,6 @@ models:
         file_extension: .json
         file_validity: 60m
         inputs:
-          - inputs/feature_table
           - packages/feature_table/models/shopify_user_features
         config:
           data:
