@@ -1,3 +1,7 @@
 output/*
 logs/logfile.log
 migrations/*
+.DS_Store
+.gitignore
+dataflow.png
+*.log
