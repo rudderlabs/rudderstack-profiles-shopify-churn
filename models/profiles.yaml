@@ -6,7 +6,7 @@ models:
       occurred_at_col: insert_ts
       entity_key: user
       validity_time: 24h # 1 day
-      py_repo_url: git@github.com:rudderlabs/rudderstack-profiles-classifier.git
+      py_repo_url: /Users/ambuj/Desktop/rudderstack_profiles_classifier
 
       train:
         file_extension: .json
@@ -14,7 +14,7 @@ models:
         inputs:
           - packages/feature_table/models/shopify_user_features
         config:
-          data:
+          data: &model_data_input_configs
             package_name: feature_table # Name of the package where the profiles feature table is defined (declared in pb_project.yaml packages)
             label_column: is_churned_7_days
             label_value: 1
@@ -25,6 +25,7 @@ models:
         inputs:
           - packages/feature_table/models/shopify_user_features
         config:
+          data: *model_data_input_configs
           outputs:
             column_names:
               percentile: &percentile_name percentile_churn_score_7_days
