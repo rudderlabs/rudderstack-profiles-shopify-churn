@@ -1,6 +1,6 @@
 # This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
 models:
-  - name: &model_name shopify_churn
+  - name: &model_1_name shopify_churn
     model_type: python_model
     model_spec:
       occurred_at_col: insert_ts
@@ -20,7 +20,7 @@ models:
             label_value: 1
             prediction_horizon_days: 7
             features_profiles_model: 'shopify_user_features'
-            output_profiles_ml_model: *model_name
+            output_profiles_ml_model: *model_1_name
 
       predict:
         inputs:
@@ -38,7 +38,7 @@ models:
 
       <<: *model_1_feature_meta_data
 
-  # - name: shopify_churn_credit_card
+  # - name: &model_2_name shopify_churn_credit_card
   #   model_type: python_model
   #   model_spec:
   #     occurred_at_col: insert_ts
@@ -48,7 +48,7 @@ models:
 
   #     train:
   #       file_extension: .json
-  #       file_validity: 1s # If the last trained model is older than this, then the model will be trained again,
+  #       file_validity: 0s # If the last trained model is older than this, then the model will be trained again,
   #       inputs:
   #         - packages/feature_table/models/shopify_user_features
   #         - models/shopify_churn
@@ -58,7 +58,8 @@ models:
   #           label_column: is_churned_7_days
   #           label_value: 0
   #           prediction_horizon_days: 14
-  #           model_name: 'shopify_user_features'
+  #           features_profiles_model: 'shopify_user_features'
+  #           output_profiles_ml_model: *model_2_name
 
   #     predict:
   #       inputs:
