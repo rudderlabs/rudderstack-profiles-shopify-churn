@@ -1,6 +1,6 @@
 # This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
 models:
-  - name: shopify_churn
+  - name: &model_name shopify_churn
     model_type: python_model
     model_spec:
       occurred_at_col: insert_ts
@@ -19,7 +19,8 @@ models:
             label_column: is_churned_7_days
             label_value: 1
             prediction_horizon_days: 7
-            model_name: 'shopify_user_features'
+            features_profiles_model: 'shopify_user_features'
+            output_profiles_ml_model: *model_name
 
       predict:
         inputs:
