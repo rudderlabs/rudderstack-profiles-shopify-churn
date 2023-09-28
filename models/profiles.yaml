@@ -38,42 +38,42 @@ models:
 
       <<: *model_1_feature_meta_data
 
-  # - name: &model_2_name shopify_churn_credit_card
-  #   model_type: python_model
-  #   model_spec:
-  #     occurred_at_col: insert_ts
-  #     entity_key: user
-  #     validity_time: 24h # 1 day
-  #     py_repo_url: git@github.com:rudderlabs/rudderstack-profiles-classifier.git
+  - name: &model_2_name shopify_churn_credit_card
+    model_type: python_model
+    model_spec:
+      occurred_at_col: insert_ts
+      entity_key: user
+      validity_time: 24h # 1 day
+      py_repo_url: git@github.com:rudderlabs/rudderstack-profiles-classifier.git
 
-  #     train:
-  #       file_extension: .json
-  #       file_validity: 0s # If the last trained model is older than this, then the model will be trained again,
-  #       inputs:
-  #         - packages/feature_table/models/shopify_user_features
-  #         - models/shopify_churn
-  #       config:
-  #         data: &model_2_data_input_configs
-  #           package_name: feature_table # Name of the package where the profiles feature table is defined (declared in pb_project.yaml packages)
-  #           label_column: is_churned_7_days
-  #           label_value: 0
-  #           prediction_horizon_days: 14
-  #           features_profiles_model: 'shopify_user_features'
-  #           output_profiles_ml_model: *model_2_name
+      train:
+        file_extension: .json
+        file_validity: 0s # If the last trained model is older than this, then the model will be trained again,
+        inputs:
+          - packages/feature_table/models/shopify_user_features
+          - models/shopify_churn
+        config:
+          data: &model_2_data_input_configs
+            package_name: feature_table # Name of the package where the profiles feature table is defined (declared in pb_project.yaml packages)
+            label_column: is_churned_7_days
+            label_value: 0
+            prediction_horizon_days: 14
+            features_profiles_model: 'shopify_user_features'
+            output_profiles_ml_model: *model_2_name
 
-  #     predict:
-  #       inputs:
-  #         - packages/feature_table/models/shopify_user_features
-  #         - models/shopify_churn
-  #       config:
-  #         data: *model_2_data_input_configs
-  #         outputs:
-  #           column_names:
-  #             percentile: &model_2_percentile_name percentile_churn_score_14_days
-  #             score: churn_score_14_days
-  #           feature_meta_data: &model_2_feature_meta_data
-  #             features:
-  #               - name: *model_2_percentile_name
-  #                 description: 'Percentile of churn score. Higher the percentile, higher the probability of churn'
+      predict:
+        inputs:
+          - packages/feature_table/models/shopify_user_features
+          - models/shopify_churn
+        config:
+          data: *model_2_data_input_configs
+          outputs:
+            column_names:
+              percentile: &model_2_percentile_name percentile_churn_score_14_days
+              score: churn_score_14_days
+            feature_meta_data: &model_2_feature_meta_data
+              features:
+                - name: *model_2_percentile_name
+                  description: 'Percentile of churn score. Higher the percentile, higher the probability of churn'
 
-  #     <<: *model_2_feature_meta_data
+      <<: *model_2_feature_meta_data
