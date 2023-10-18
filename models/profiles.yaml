@@ -21,6 +21,12 @@ models:
             prediction_horizon_days: 7
             features_profiles_model: 'shopify_user_features'
             output_profiles_ml_model: *model_name
+            eligible_users: days_since_last_purchase is null or days_since_last_purchase > 30
+          preprocessing:
+            ignore_features: 
+              - user_email
+              - first_name
+              - last_name
 
       predict:
         inputs:
