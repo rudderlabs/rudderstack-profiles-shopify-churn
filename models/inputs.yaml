@@ -1,10 +1,10 @@
 inputs:
   - name: feature_table
-    table: rs_profiles_2.identifies
+    table: rs_profiles_3.identifies
     occurred_at_col: timestamp
     
   - name: rsCartUpdate
-    table: rs_profiles_2.cart_update
+    table: rs_profiles_3.cart_update
     occurred_at_col: timestamp
     ids: 
       - select: "anonymous_id"
@@ -15,7 +15,7 @@ inputs:
       category: webhook
         
   - name: rsIdentifies
-    table: rs_profiles_2.identifies
+    table: rs_profiles_3.identifies
     occurred_at_col: timestamp
     ids: 
       - select: "user_id"
@@ -34,7 +34,7 @@ inputs:
       category: webhook
         
   - name: rsOrderCancelled
-    table: rs_profiles_2.order_cancelled
+    table: rs_profiles_3.order_cancelled
     occurred_at_col: timestamp
     ids: 
       - select: "user_id"
@@ -49,7 +49,7 @@ inputs:
       category: webhook
         
   - name: rsOrderCreated
-    table: rs_profiles_2.order_created
+    table: rs_profiles_3.order_created
     occurred_at_col: timestamp
     ids: 
       - select: "user_id"
@@ -64,7 +64,7 @@ inputs:
       category: webhook
         
   - name: rsOrderUpdated
-    table: rs_profiles_2.order_updated
+    table: rs_profiles_3.order_updated
     occurred_at_col: timestamp
     ids: 
       - select: "user_id"
@@ -79,7 +79,7 @@ inputs:
       category: webhook
         
   - name: rsPages
-    table: rs_profiles_2.pages
+    table: rs_profiles_3.pages
     occurred_at_col: timestamp
     ids: 
       - select: "user_id"
@@ -102,7 +102,7 @@ inputs:
       category: webhook
         
   - name: rsTracks
-    table: rs_profiles_2.tracks
+    table: rs_profiles_3.tracks
     occurred_at_col: timestamp
     ids: 
       - select: "user_id"
