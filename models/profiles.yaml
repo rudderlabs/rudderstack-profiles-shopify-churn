@@ -11,7 +11,7 @@ models:
       train:
         file_extension: .json
         file_validity: 168h # If the last trained model is older than this, then the model will be trained again,
-        inputs:
+        inputs: &inputs
           - packages/feature_table/models/shopify_user_features # inputs to materialise the required data for model
         config:
           data: &model_data_configs
@@ -22,6 +22,8 @@ models:
             features_profiles_model: 'shopify_user_features' # Model name
             output_profiles_ml_model: *model_name # Name of output model based on current model to dinstinguish between multiple models
             eligible_users: days_since_last_purchase is null or days_since_last_purchase > 30
+            inputs: *inputs
+
           
           preprocessing: &model_prep_configs
             ignore_features:
