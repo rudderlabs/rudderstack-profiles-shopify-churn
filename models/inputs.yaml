@@ -1,118 +1,64 @@
 inputs:
-  - name: feature_table
-    table: rs_profiles_3.identifies
-    occurred_at_col: timestamp
-    
-  - name: rsCartUpdate
-    table: rs_profiles_3.cart_update
-    occurred_at_col: timestamp
-    ids: 
-      - select: "anonymous_id"
-        type: anonymous_id
-        entity: user
-    source_metadata:
-      role: shopify
-      category: webhook
-        
   - name: rsIdentifies
-    table: rs_profiles_3.identifies
-    occurred_at_col: timestamp
-    ids: 
-      - select: "user_id"
-        type: user_id
-        entity: user
-        
-      - select: "anonymous_id"
-        type: anonymous_id
-        entity: user
-        
-      - select: "lower(email)"
-        type: email
-        entity: user
     source_metadata:
       role: shopify
       category: webhook
-        
-  - name: rsOrderCancelled
-    table: rs_profiles_3.order_cancelled
-    occurred_at_col: timestamp
-    ids: 
-      - select: "user_id"
-        type: user_id
-        entity: user
-        
-      - select: "anonymous_id"
-        type: anonymous_id
-        entity: user
-    source_metadata:
-      role: shopify
-      category: webhook
-        
-  - name: rsOrderCreated
-    table: rs_profiles_3.order_created
-    occurred_at_col: timestamp
-    ids: 
-      - select: "user_id"
-        type: user_id
-        entity: user
-        
-      - select: "anonymous_id"
-        type: anonymous_id
-        entity: user
-    source_metadata:
-      role: shopify
-      category: webhook
-        
-  - name: rsOrderUpdated
-    table: rs_profiles_3.order_updated
-    occurred_at_col: timestamp
-    ids: 
-      - select: "user_id"
-        type: user_id
-        entity: user
-        
-      - select: "anonymous_id"
-        type: anonymous_id
-        entity: user
-    source_metadata:
-      role: shopify
-      category: webhook
-        
+    contract:
+      is_optional: false
+      is_event_stream: true
+      with_entity_ids:
+        - user
+      with_columns: []
+    app_defaults:
+      table: rs_profiles_3.identifies
+      occurred_at_col: timestamp
+      ids:
+        - select: "user_id"
+          type: user_id
+          entity: user
+        - select: "anonymous_id"
+          type: anonymous_id
+          entity: user
+        - select: "lower(email)"
+          type: email
+          entity: user
   - name: rsPages
-    table: rs_profiles_3.pages
-    occurred_at_col: timestamp
-    ids: 
-      - select: "user_id"
-        type: user_id
-        entity: user
-        
-      - select: "anonymous_id"
-        type: anonymous_id
-        entity: user
-        
-      - select: "concat(coalesce(anonymous_id, 'null'), coalesce(to_char(context_session_id, '9999999999999'), 'null'))"
-        type: session_id
-        entity: user
-        
-      - select: "concat(coalesce(anonymous_id, 'null'), coalesce(to_char(context_session_id, '9999999999999'), 'null'))"
-        type: session_id
-        entity: session
     source_metadata:
       role: shopify
       category: webhook
-        
+    contract:
+      is_optional: false
+      is_event_stream: true
+      with_entity_ids:
+        - user
+      with_columns: []
+    app_defaults:
+      table: rs_profiles_3.pages
+      occurred_at_col: timestamp
+      ids:
+        - select: "user_id"
+          type: user_id
+          entity: user
+        - select: "anonymous_id"
+          type: anonymous_id
+          entity: user
   - name: rsTracks
-    table: rs_profiles_3.tracks
-    occurred_at_col: timestamp
-    ids: 
-      - select: "user_id"
-        type: user_id
-        entity: user
-        
-      - select: "anonymous_id"
-        type: anonymous_id
-        entity: user
     source_metadata:
       role: shopify
       category: webhook
-        
+    contract:
+      is_optional: false
+      is_event_stream: true
+      with_entity_ids:
+        - user
+      with_columns: []
+    app_defaults:
+      table: rs_profiles_3.tracks
+      occurred_at_col: timestamp
+      ids:
+        - select: "user_id"
+          type: user_id
+          entity: user
+        - select: "anonymous_id"
+          type: anonymous_id
+          entity: user

@@ -1,4 +1,3 @@
-# This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
 models:
   - name: &model_name shopify_churn
     model_type: python_model
@@ -6,8 +5,7 @@ models:
       occurred_at_col: insert_ts
       entity_key: user
       validity_time: 24h # 1 day
-      py_repo_url: /Users/admin/Desktop/rudderstack_profiles_classifier
-
+      py_repo_url: git@github.com:rudderlabs/rudderstack-profiles-classifier.git 
       train:
         file_extension: .json
         file_validity: 168h # If the last trained model is older than this, then the model will be trained again,
@@ -21,14 +19,12 @@ models:
             prediction_horizon_days: 7 # Number of days in future for which we want to predict
             features_profiles_model: 'shopify_user_features' # Model name
             output_profiles_ml_model: *model_name # Name of output model based on current model to dinstinguish between multiple models
-            eligible_users: days_since_last_purchase is null or days_since_last_purchase > 30
-          
+            eligible_users: days_since_account_creation is null or days_since_account_creation >0 #1=1 #days_since_last_purchase is null or days_since_last_purchase > 30
           preprocessing: &model_prep_configs
             ignore_features:
               - user_email
               - first_name
               - last_name
-
       predict:
         inputs:
           - packages/feature_table/models/shopify_user_features
@@ -43,5 +39,4 @@ models:
               features:
                 - name: *percentile_name
                   description: 'Percentile of churn score. Higher the percentile, higher the probability of churn'
-
       <<: *feature_meta_data
