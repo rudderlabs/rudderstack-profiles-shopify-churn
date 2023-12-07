@@ -5,7 +5,7 @@ name: shopify_features_and_churn
 schema_version: 38
 
 # WH Connection to use.
-connection: default
+connection: test
 
 # Whether to allow inputs having no timestamps,
 # if true, data without timestamps are included when running models
