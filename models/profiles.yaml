@@ -4,7 +4,7 @@ models:
     model_type: python_model
     model_spec:
       occurred_at_col: insert_ts
-      entity_key: user
+      entity_key: &entity_name user
       validity_time: 24h # 1 day
       py_repo_url: git@github.com:rudderlabs/rudderstack-profiles-classifier.git
 
@@ -13,6 +13,7 @@ models:
         file_validity: 168h # If the last trained model is older than this, then the model will be trained again,
         inputs: &inputs
           - packages/feature_table/models/shopify_user_features # inputs to materialise the required data for model
+          - entity/user/user_var_table
         config:
           data: &model_data_configs
             label_column: is_churned_7_days # Name of column for which we want to find predictions
@@ -20,6 +21,7 @@ models:
             package_name: feature_table # Name of the package where the profiles feature table is defined (declared in pb_project.yaml packages)
             prediction_horizon_days: 7 # Number of days in future for which we want to predict
             features_profiles_model: 'shopify_user_features' # Model name
+            entiry_key: *entity_name # Name of entity key
             output_profiles_ml_model: *model_name # Name of output model based on current model to dinstinguish between multiple models
             eligible_users: days_since_last_purchase is null or days_since_last_purchase > 30
             inputs: *inputs
@@ -34,6 +36,7 @@ models:
       predict:
         inputs:
           - packages/feature_table/models/shopify_user_features
+          - entity/user/user_var_table
         config:
           data: *model_data_configs # Use the same config as training
           preprocessing: *model_prep_configs # Use the same config as training
